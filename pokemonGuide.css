@@ -1,0 +1,30 @@
+#pokemon {
+    width: 70%;
+}
+
+#pokemonInfo {
+    width: 20%
+}
+
+h2 {
+    text-transform: capitalize;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.typesDiv,
+.heightDiv {
+    margin-bottom: 1em;
+}
+
+.weightDiv {
+    margin-bottom: 5em;
+}
+
+li {
+    margin-left: 15px;
+    margin-bottom: 0px;
+}

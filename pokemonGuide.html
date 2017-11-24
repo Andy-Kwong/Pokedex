@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="skeleton.css">
+    <link rel="stylesheet" type="text/css" href="pokemonGuide.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class=wrapper>
+        <div id="pokemon">
+
+        </div>
+
+        <div id="pokemonInfo">
+
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){for(var i = 1; i <= 151; i++) {
+        $("#pokemon").append("<img class='specific' id='" + i + "' src='pokemon151/" + i + ".png'>");
+    };
+
+        $(document).on("click", ".specific", function() {
+            var i = $(this).attr("id");
+            console.log(i)
+             $.get("https://pokeapi.co/api/v2/pokemon/" + i + "/", function(info) {
+                console.log(info)
+                $("#pokemonInfo").append("<div id='pokemonCard" + i + "'></div>")
+                $("#pokemonCard" + i).append("<h2>" + info.name + "</h2>");
+                $("#pokemonCard" + i).append("<img src='pokemon151/" + i + ".png'>");
+                $("#pokemonCard" + i).append("<div class='typesDiv'><h5>Types</h5><ul id='typesList" + i + "'></ul></div>");
+                for(var j = 0; j < info.types.length; j++) {
+                    console.log(info.types[j].type.name);
+                    $("#typesList" + i).append("<li>" + info.types[j].type.name + "</li>");
+                }
+                $("#pokemonCard" + i).append("<div class='heightDiv'> <h5>Height</h5>" + info.height + "</div>")
+                $("#pokemonCard" + i).append("<div class='weightDiv'> <h5>Weight</h5>" + info.weight + "</div>")
+            }, "json");
+        });
+
+        // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(info) {
+        //     console.log(info.types[0].type.name);
+        // }, "json");
+
+});
+    </script>
+</body>
+</html>
